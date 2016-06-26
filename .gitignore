@@ -27,7 +27,7 @@ build/Release
 ehthumbs.db
 Icon?
 Thumbs.db
-
+dist.tar.gz
 # Node Files #
 /node_modules
 /bower_components
