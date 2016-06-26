@@ -1,0 +1,22 @@
+<div class='row'>
+  <a linkTo="/dashboard/subjects/new" class="btn  btn-primary pull-right"><i class="fa fa-plus fa-1x" aria-hidden="true"></i></a>
+  <table class="table">
+    <thead>
+      <th>Subject Name</th>
+      <th>Year</th>
+      <th colspan="2"></th>
+    </thead>
+    <tbody>
+      <tr *ngFor="let subject of subjects">
+        <td>{{subject.name}}</td>
+        <td>{{subject.year}}</td>
+        <td>
+          <a linkTo="/dashboard/subjects/{{subject.id}}" class="btn btn-xs btn-primary"><i class="fa fa-pencil fa-1x" aria-hidden="true"></i></a>
+        </td>
+        <td>
+          <button (click)="delete(subject, $event)" class="btn btn-xs btn-danger"><i class='fa fa-trash'></i></button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <div>

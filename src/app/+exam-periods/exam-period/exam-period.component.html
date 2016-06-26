@@ -1,0 +1,27 @@
+<div *ngIf="examPeriod">
+  <form>
+    <div class="form-group">
+      <label for="first_name">Label</label>
+      <input type="text" name="label" [(ngModel)]="examPeriod.label" class="form-control" id="first_name" placeholder="First Name">
+    </div>
+    <div class="form-group">
+      <label for="middle_name">Start Date</label>
+      <input  type="date" name="start_date" [(ngModel)]="examPeriod.start_date" class="form-control" id="middle_name" placeholder="Middle Name">
+    </div>
+    <div class="form-group">
+      <label for="last_name">End Date</label>
+      <input  type="text" type="date" name="end_date" [(ngModel)]="examPeriod.end_date" class="form-control" id="last_name" placeholder="Last Name">
+    </div>
+    <div class="form-group">
+      <label for="middle_name">Term</label>
+      <select [(ngModel)]="examPeriod.term_id" name="term_id" class="form-control">
+        <option *ngFor="let term of terms" value={{term.id}}>
+          {{term.name}}
+        </option>
+      </select>
+    </div>
+    <button *ngIf="isNew" (click)="save()" type="submit" class="btn btn-default"><i class="fa fa-floppy-o" aria-hidden="true"></i> Save</button>
+    <button *ngIf="!isNew" (click)="save()" type="submit" class="btn btn-success"><i class="fa fa-pencil" aria-hidden="true"></i> Update</button>
+    <a linkTo="/dashboard/exam-periods" class="btn btn-primary" ><i class="fa fa-chevron-left"></i> Back</a>
+  </form>
+</div>

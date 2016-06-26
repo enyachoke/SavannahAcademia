@@ -1,0 +1,72 @@
+<button type="button" class="btn btn-primary" (click)="addClassTiming(smModal)">New timing</button>
+
+<table class="table table-condensed">
+  <thead>
+    <th>Name</th>
+    <th>Start Time</th>
+    <th>End Time</th>
+    <th>Is break</th>
+    <th colspan="2"></th>
+  </thead>
+  <tbody>
+    <tr *ngFor="let classTiming of classTimings">
+      <td>{{classTiming.name}}</td>
+      <td>{{classTiming.start_time | appTime }}</td>
+      <td>{{classTiming.end_time | appTime}}</td>
+      <td>{{classTiming.is_break }}</td>
+      <td>
+        <a (click)="editTiming(classTiming, $event,smModal)" class="btn btn-xs btn-primary"><i class="fa fa-pencil fa-1x" aria-hidden="true"></i></a>
+      </td>
+      <td>
+        <button (click)="delete(classTiming, $event)" class="btn btn-xs btn-danger"><i class='fa fa-trash'></i></button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<div bsModal #smModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" aria-label="Close" (click)="smModal.hide()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title">Small modal</h4>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="col-md-12">
+            <div class="form-group">
+              <label for="exampleInputName2">Name</label>
+              <input type="text" name="name" [(ngModel)]="classTiming.name" class="form-control" id="exampleInputEmail1" placeholder="Name">
+            </div>
+            <div class="form-group">
+              <label for="exampleInputName2">Start Time</label>
+              <input [(ngModel)]="classTiming.start_time" name="start_time" class="form-control" />
+            </div>
+            <div class="form-group">
+              <label for="exampleInputName2">End Time</label>
+              <input [(ngModel)]="classTiming.end_time" name="end_time" class="form-control" />
+            </div>
+            <div class="form-group">
+              <div>
+                <label>
+                  <input [(ngModel)]="classTiming.is_break" name="is_break" class="checkbox" type="checkbox">
+                  <span>Break</span>
+                </label>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button style="margin-top:60px;" (click)="saveClassTiming()" class="btn btn-success">
+          <span *ngIf="addTiming">
+            Add
+          </span>
+          <span *ngIf="!addTiming">
+            Update
+          </span>
+        </button>
+      </div>
+    </div>
+  </div>

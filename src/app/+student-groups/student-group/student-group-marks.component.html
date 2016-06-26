@@ -1,0 +1,56 @@
+<div *ngIf="studentGroup">
+  <div class="row">
+    <div class="col-md-6">
+      <fieldset class="form-group">
+        <label for="exampleSelect1">Exam Period</label>
+        <select (change)="onChange($event,'examPeriod')" (ngModel)="examPeriod" class="form-control" id="exampleSelect1">
+          <option *ngFor="let examPeriod of examPeriods" value={{examPeriod.id}}>
+            {{examPeriod.label}}
+          </option>
+        </select>
+      </fieldset>
+    </div>
+    <div class="col-md-6">
+      <fieldset class="form-group">
+        <label for="exampleSelect1">Subject</label>
+        <select (change)="onChange($event,'classRoomSubject')" (ngModel)="classRoomSubject" class="form-control" id="exampleSelect1">
+          <option *ngFor="let classRoomSubject of classRoomSubjects" value={{classRoomSubject.id}}>
+            {{classRoomSubject.name}}
+          </option>
+        </select>
+      </fieldset>
+    </div>
+  </div>
+  <div *ngIf="examPeriod && classRoomSubject">
+    <form class="table" [formGroup]="resultForm">
+      <h3>Student Marks for {{classRoomSubject.name}}#{{examPeriod.label}}</h3>
+      <table>
+
+        <tr *ngFor="let ctrl of resultForm.controls['results'].controls; let i = index" [formGroup]="ctrl">
+          <input hidden formControlName="student_id">
+          <input hidden formControlName="class_room_subject_id">
+          <input hidden formControlName="exam_period_id">
+          <input hidden formControlName="student_group_id">
+          <td>
+            <input disabled formControlName="name" placeholder="No Name">
+          </td>
+          <td>
+            <input formControlName="marks" placeholder="marks">
+          </td>
+          <td>
+            <input formControlName="points" placeholder="points">
+          </td>
+          <td>
+            <input formControlName="comments" placeholder="comments">
+          </td>
+        </tr>
+      </table>
+
+      <br /> {{ resultForm.value|json }}
+
+      <br />
+      <button type="button" (click)="saveResults()">Submit</button>
+
+    </form>
+  </div>
+</div>

@@ -1,0 +1,84 @@
+<div *ngIf="classRoom">
+  <form>
+    <div class="form-group">
+      <label for="name">Name</label>
+      <input type="text" [(ngModel)]="classRoom.name" name="name" class="form-control" id="name" placeholder="Name">
+    </div>
+    <div class="form-group">
+      <label for="middle_name">Number</label>
+      <input type="text" [(ngModel)]="classRoom.number" name="number" class="form-control" id="middle_name" placeholder="Number">
+    </div>
+    <button *ngIf="isNew" (click)="save()" type="submit" class="btn btn-default"><i class="fa fa-floppy-o" aria-hidden="true"></i> Save</button>
+    <button *ngIf="!isNew" (click)="save()" type="submit" class="btn btn-success"><i class="fa fa-pencil" aria-hidden="true"></i> Update</button>
+    <a linkTo="/dashboard/class-rooms" class="btn btn-primary"><i class="fa fa-chevron-left"></i> Back</a>
+  </form>
+  <fieldset *ngIf="classRoom.class_room_subjects">
+    <legend>Class Room Subjects</legend>
+    <table class="table">
+      <thead>
+        <th>Subject Name</th>
+        <th>Year</th>
+        <th>Teacher</th>
+        <th colspan="2"></th>
+      </thead>
+      <tbody>
+        <tr *ngFor="let classRoomSubject of classRoom.class_room_subjects">
+          <td>{{classRoomSubject.subject.name}}</td>
+          <td>{{classRoomSubject.subject.year}}</td>
+          <td><span *ngIf="classRoomSubject.teacher">{{classRoomSubject.teacher.first_name}} {{classRoomSubject.teacher.last_name}}</span></td>
+          <td>
+            <button (click)="openAssignSubjectModal(classRoomSubject, $event,lgModal)" onShow="openAssignSubjectModal(classRoomSubject, $event)" class="btn btn-xs btn-primary"><span *ngIf="classRoomSubject.teacher">re-</span>assign</button>
+            <button (click)="removeSubject(classRoomSubject, $event)" class="btn btn-xs btn-danger">remove<i class='fa fa-minus'></i></button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </fieldset>
+  <fieldset *ngIf="subjects">
+    <legend>Available Subjects</legend>
+    <table class="table">
+      <thead>
+        <th>Subject Name</th>
+        <th>Year</th>
+        <th colspan="2"></th>
+      </thead>
+      <tbody>
+        <tr *ngFor="let subject of subjects">
+          <td>{{subject.name}}</td>
+          <td>{{subject.year}}</td>
+          <td>
+            <button (click)="addSubject(subject, $event)" class="btn btn-xs btn-success">add <i class='fa fa-plus'></i></button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </fieldset>
+  <div bsModal #lgModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" (click)="lgModal.hide()" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <h4 class="modal-title">Select Teacher #{{selectedTeacherId}}</h4>
+        </div>
+        <div class="modal-body">
+          <div *ngIf="teachers">
+            <div class="form-group">
+              <label for="middle_name">Select Teacher</label>
+              <select [(ngModel)]="selectedTeacherId"  class="form-control">
+                <option *ngFor="let teacher of teachers" value={{teacher.id}}>
+                  {{teacher.first_name}} {{teacher.last_name}}
+                </option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal" (click)="lgModal.hide()">Cancel</button>
+          <button type="button" class="btn btn-primary" (click)="assignSubjectTeacher()">Assign</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

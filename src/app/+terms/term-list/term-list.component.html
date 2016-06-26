@@ -1,0 +1,24 @@
+<div class='row'>
+  <a linkTo="/dashboard/terms/new" class="btn  btn-primary pull-right"><i class="fa fa-plus fa-1x" aria-hidden="true"></i></a>
+<table class="table">
+  <thead>
+    <th>Name</th>
+    <th>Start Date</th>
+    <th>End Date</th>
+    <th colspan="2"></th>
+  </thead>
+  <tbody>
+    <tr *ngFor="let term of terms">
+      <td>{{term.name}}</td>
+      <td>{{term.start_date}}</td>
+      <td>{{term.end_date }}</td>
+      <td>
+        <a linkTo="/dashboard/terms/{{term.id}}" class="btn btn-xs btn-primary"><i class="fa fa-pencil fa-1x" aria-hidden="true"></i></a>
+      </td>
+      <td>
+        <button (click)="delete(term, $event)" class="btn btn-xs btn-danger"><i class='fa fa-trash'></i></button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<div>

@@ -1,0 +1,42 @@
+<div *ngIf="studentGroup">
+  <form>
+    <div class="form-group">
+      <label for="name">Name</label>
+      <input type="text" name="name" [(ngModel)]="studentGroup.name" class="form-control" id="name" placeholder="Name">
+    </div>
+    <div class="form-group">
+      <label for="middle_name">Year</label>
+      <select [(ngModel)]="studentGroup.year_id" name="year_id" class="form-control">
+        <option *ngFor="let year of years" value={{year.id}}>
+          {{year.name}}
+        </option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="middle_name">Class Room</label>
+      <select [(ngModel)]="studentGroup.class_room_id"  name="class_room_id" class="form-control">
+        <option *ngFor="let classRoom of classRooms" value={{classRoom.id}}>
+          {{classRoom.name}}
+        </option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="middle_name">Class Teacher</label>
+      <select [(ngModel)]="studentGroup.group_teacher_id" name="teacher_id" class="form-control">
+        <option *ngFor="let teacher of teachers" value={{teacher.id}}>
+          {{teacher.first_name}} {{teacher.last_name}}
+        </option>
+      </select>
+    </div>
+    <button *ngIf="isNew" (click)="save()" type="submit" class="btn btn-default"><i class="fa fa-floppy-o" aria-hidden="true"></i> Save</button>
+    <button *ngIf="!isNew" (click)="save()" type="submit" class="btn btn-success"><i class="fa fa-pencil" aria-hidden="true"></i> Update</button>
+    <a linkTo="/dashboard/student-groups" class="btn btn-primary"><i class="fa fa-chevron-left"></i> Back</a>
+  </form>
+  <div style="padding-top:10px">
+    <tabset>
+      <tab *ngFor="let day of days" [heading]="day.name" (select)="tabSelected(day.number)">
+      </tab>
+    </tabset>
+    <app-class-timings [weekDay]="weekDay" [studentGroup]="studentGroup"></app-class-timings>
+  </div>
+</div>

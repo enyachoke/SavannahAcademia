@@ -1,0 +1,19 @@
+<div *ngIf="teacher">
+  <form>
+    <div class="form-group">
+      <label for="first_name">First Name</label>
+      <input type="text" name="first_name" [(ngModel)]="teacher.first_name" class="form-control" id="first_name" placeholder="First Name">
+    </div>
+    <div class="form-group">
+      <label for="middle_name">Middle Name</label>
+      <input  name="middle_name" type="text" [(ngModel)]="teacher.middle_name" class="form-control" id="middle_name" placeholder="Middle Name">
+    </div>
+    <div class="form-group">
+      <label for="last_name">Last Name</label>
+      <input  name="last_name" type="text" type="text" [(ngModel)]="teacher.last_name" class="form-control" id="last_name" placeholder="Last Name">
+    </div>
+    <button *ngIf="isNew" (click)="save()" type="submit" class="btn btn-default"><i class="fa fa-floppy-o" aria-hidden="true"></i> Save</button>
+    <button *ngIf="!isNew" (click)="save()" type="submit" class="btn btn-success"><i class="fa fa-pencil" aria-hidden="true"></i> Update</button>
+    <a linkTo="/dashboard/teachers" class="btn btn-primary" ><i class="fa fa-chevron-left"></i> Back</a>
+  </form>
+</div>

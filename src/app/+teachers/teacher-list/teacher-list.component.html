@@ -1,0 +1,24 @@
+<div class='row'>
+  <a linkTo="/dashboard/teachers/new" class="btn  btn-primary pull-right"><i class="fa fa-plus fa-1x" aria-hidden="true"></i></a>
+<table class="table">
+  <thead>
+    <th>First Name</th>
+    <th>Middle Name</th>
+    <th>Last Name</th>
+    <th colspan="2"></th>
+  </thead>
+  <tbody>
+    <tr *ngFor="let teacher of teachers">
+      <td>{{teacher.first_name}}</td>
+      <td>{{teacher.middle_name}}</td>
+      <td>{{teacher.last_name }}</td>
+      <td>
+        <a linkTo="/dashboard/teachers/{{teacher.id}}" class="btn btn-xs btn-primary"><i class="fa fa-pencil fa-1x" aria-hidden="true"></i></a>
+      </td>
+      <td>
+        <button (click)="delete(teacher, $event)" class="btn btn-xs btn-danger"><i class='fa fa-trash'></i></button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<div>
