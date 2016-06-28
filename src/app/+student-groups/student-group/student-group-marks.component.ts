@@ -17,14 +17,14 @@ import {Observable} from 'rxjs/Rx';
 })
 export class StudentGroupMarksComponent implements OnInit {
   studentGroup: StudentGroup;
-  examPeriods: any[];
-  classRoomSubjects: any[];
+  examPeriods: ExamPeriod[];
+  classRoomSubjects: ClassRoomSubject[];
   resultForm: FormGroup;
   examPeriod: ExamPeriod;
   classRoomSubject: ClassRoomSubject;
   existingMarks: any = [];
   id: any;
-  isNew: Boolean;
+  showMarks: Boolean;
   error: any;
   resultArray = new FormArray([]);
   constructor(private studentGroupService: StudentGroupService, params$: RouteParams,
@@ -37,13 +37,15 @@ export class StudentGroupMarksComponent implements OnInit {
     });
   }
   ngOnInit() {
+    this.classRoomSubject = new ClassRoomSubject();
+    this.examPeriod = new ExamPeriod();
     this.getData();
   }
   getExisiting() {
     let params: URLSearchParams = new URLSearchParams();
-    params.set('student_group_id', this.studentGroup.id + "");
-    params.set('exam_period_id', this.examPeriod.id + "");
-    params.set('class_room_subject_id', this.classRoomSubject.id + "");
+    params.set('student_group_id', this.studentGroup.id + '');
+    params.set('exam_period_id', this.examPeriod.id + '');
+    params.set('class_room_subject_id', this.classRoomSubject.id + '');
     this.studentGroupMarkService.getByExisiting(params).subscribe(
       data => {
         this.existingMarks = data;
@@ -129,17 +131,23 @@ export class StudentGroupMarksComponent implements OnInit {
       err => console.error(err)
       );
   }
-  onChange(event, type) {
-    if (type === 'examPeriod') {
-      let value = this.examPeriods.filter(item => item.id = event.target.value)[0];
-      this.examPeriod = value;
-    } else {
-      let value = this.classRoomSubjects.filter(item => item.id = event.target.value)[0];
-      this.classRoomSubject = value;
-    }
-    if (this.examPeriod && this.classRoomSubject) {
+  onChange() {
+    let vm = this;
+    let exam = this.examPeriods.find(function(d) {
+      return d.id === Number(vm.examPeriod.id);
+    });
+    let subject = this.classRoomSubjects.find(function(d) {
+      return d.id === Number(vm.classRoomSubject.id);
+    });
+    if (exam && subject) {
+      this.classRoomSubject = subject;
+      this.examPeriod = exam;
+      this.removeAll();
       this.getExisiting();
     }
-
+  }
+  removeAll() {
+    this.resultForm.controls['results']['controls'] = [];
+    (<FormGroup>this.resultForm.controls['results']).updateValueAndValidity();
   }
 }

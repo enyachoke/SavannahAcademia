@@ -2,13 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { Term, TermService } from '../shared/index';
 import { Year, YearService } from '../../+years/shared/index';
 import { RouteParams, Router } from '@ngrx/router';
-import { DateTimePickerDirective } from '../../shared/components';
 @Component({
   moduleId: module.id,
   selector: 'app-term',
   templateUrl: 'term.component.html',
   styleUrls: ['term.component.css'],
-  directives: [DateTimePickerDirective],
+  directives: [],
   providers: [YearService]
 })
 export class TermComponent implements OnInit {

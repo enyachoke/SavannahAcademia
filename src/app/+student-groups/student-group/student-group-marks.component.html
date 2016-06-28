@@ -1,29 +1,33 @@
 <div *ngIf="studentGroup">
-  <div class="row">
-    <div class="col-md-6">
-      <fieldset class="form-group">
-        <label for="exampleSelect1">Exam Period</label>
-        <select (change)="onChange($event,'examPeriod')" (ngModel)="examPeriod" class="form-control" id="exampleSelect1">
-          <option *ngFor="let examPeriod of examPeriods" value={{examPeriod.id}}>
-            {{examPeriod.label}}
-          </option>
-        </select>
-      </fieldset>
+  <ng2-toasty></ng2-toasty>
+  <form>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="middle_name">Exam Period</label>
+          <select [(ngModel)]="examPeriod.id" name="exam_period" class="form-control">
+            <option *ngFor="let examPeriod of examPeriods" value="{{examPeriod.id}}">
+              {{examPeriod.label}}
+            </option>
+          </select>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="middle_name">Subject</label>
+          <select [(ngModel)]="classRoomSubject.id" name="subject_id" class="form-control">
+            <option *ngFor="let classRoomSubject of classRoomSubjects" value={{classRoomSubject.id}}>
+              {{classRoomSubject.name}}
+            </option>
+          </select>
+        </div>
+      </div>
     </div>
-    <div class="col-md-6">
-      <fieldset class="form-group">
-        <label for="exampleSelect1">Subject</label>
-        <select (change)="onChange($event,'classRoomSubject')" (ngModel)="classRoomSubject" class="form-control" id="exampleSelect1">
-          <option *ngFor="let classRoomSubject of classRoomSubjects" value={{classRoomSubject.id}}>
-            {{classRoomSubject.name}}
-          </option>
-        </select>
-      </fieldset>
-    </div>
-  </div>
+    <button class="btn btn-primary" (click)="onChange()"> Enter Marks</button>
+  </form>
   <div *ngIf="examPeriod && classRoomSubject">
     <form class="table" [formGroup]="resultForm">
-      <h3>Student Marks for {{classRoomSubject.name}}#{{examPeriod.label}}</h3>
+      <h3>Marks for {{classRoomSubject.name}}#{{examPeriod.label}}</h3>
       <table>
 
         <tr *ngFor="let ctrl of resultForm.controls['results'].controls; let i = index" [formGroup]="ctrl">
@@ -32,25 +36,20 @@
           <input hidden formControlName="exam_period_id">
           <input hidden formControlName="student_group_id">
           <td>
-            <input disabled formControlName="name" placeholder="No Name">
+            <input class="form-control" disabled formControlName="name" placeholder="No Name">
           </td>
           <td>
-            <input formControlName="marks" placeholder="marks">
+            <input class="form-control" formControlName="marks" placeholder="marks">
           </td>
           <td>
-            <input formControlName="points" placeholder="points">
+            <input class="form-control" formControlName="points" placeholder="points">
           </td>
           <td>
-            <input formControlName="comments" placeholder="comments">
+            <input class="form-control" formControlName="comments" placeholder="comments">
           </td>
         </tr>
       </table>
-
-      <br /> {{ resultForm.value|json }}
-
-      <br />
-      <button type="button" (click)="saveResults()">Submit</button>
-
+      <button type="button" class="btn btn-success" (click)="saveResults()">Save</button>
     </form>
   </div>
 </div>

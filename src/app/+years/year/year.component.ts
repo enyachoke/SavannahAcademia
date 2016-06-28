@@ -1,13 +1,12 @@
 import { Component, OnInit} from '@angular/core';
 import { Year, YearService } from '../shared/index';
 import { RouteParams, Router } from '@ngrx/router';
-import { DateTimePickerDirective} from '../../shared/components';
 @Component({
   moduleId: module.id,
   selector: 'app-year',
   templateUrl: 'year.component.html',
   styleUrls: ['year.component.css'],
-  directives: [DateTimePickerDirective]
+  directives: []
 })
 export class YearComponent implements OnInit {
   year: Year;

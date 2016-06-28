@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CORE_DIRECTIVES } from '@angular/common';
-import { DateTimePickerDirective} from '../shared/components';
+import { AuthService} from '../+login/shared';
 import { Time } from '../time.pipe';
 @Component({
   moduleId: module.id,
@@ -8,13 +8,16 @@ import { Time } from '../time.pipe';
   templateUrl: 'dashboard.component.html',
   styleUrls: ['dashboard.component.css'],
   pipes: [Time],
-  directives: [CORE_DIRECTIVES, DateTimePickerDirective]
+  providers: [AuthService],
+  directives: [CORE_DIRECTIVES]
 })
 export class DashboardComponent implements OnInit {
   toggle: boolean = false;
-  constructor() { }
+  profile: any;
+  constructor(private authService: AuthService) { }
 
   ngOnInit() {
+    this.profile = this.authService.getProfile();
   }
   toggleSidebar() {
     this.toggle = !this.toggle;
