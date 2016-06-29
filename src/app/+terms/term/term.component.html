@@ -1,4 +1,5 @@
 <div *ngIf="term">
+  <ng2-toasty></ng2-toasty>
   <form>
     <div class="form-group">
       <label for="first_name">Name</label>
@@ -6,11 +7,11 @@
     </div>
     <div class="form-group">
       <label for="middle_name">Start Date</label>
-      <input type="date" [(ngModel)]="term.start_date"  name="start_date"  class="form-control" id="middle_name" placeholder="Start Date">
+      <input type="date" [(ngModel)]="term.start_date" name="start_date" class="form-control" id="middle_name" placeholder="Start Date">
     </div>
     <div class="form-group">
       <label for="last_name">End Date</label>
-      <input type="date" type="text" [(ngModel)]="term.end_date"  name="end_date" class="form-control" id="last_name" placeholder="End Date">
+      <input type="date" type="text" [(ngModel)]="term.end_date" name="end_date" class="form-control" id="last_name" placeholder="End Date">
     </div>
     <div class="form-group">
       <label for="middle_name">Year</label>

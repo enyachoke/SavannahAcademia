@@ -1,4 +1,5 @@
 <div *ngIf="classRoom">
+  <ng2-toasty></ng2-toasty>
   <form>
     <div class="form-group">
       <label for="name">Name</label>
@@ -66,7 +67,7 @@
           <div *ngIf="teachers">
             <div class="form-group">
               <label for="middle_name">Select Teacher</label>
-              <select [(ngModel)]="selectedTeacherId"  class="form-control">
+              <select [(ngModel)]="selectedTeacherId" class="form-control">
                 <option *ngFor="let teacher of teachers" value={{teacher.id}}>
                   {{teacher.first_name}} {{teacher.last_name}}
                 </option>

@@ -5,6 +5,7 @@ import {AuthHttp, AuthConfig, AUTH_PROVIDERS} from 'angular2-jwt';
 import {HttpInterceptor} from './shared/http';
 import {WidgetComponent} from './shared/widget/index';
 import './rxjs-operators';
+import {ToastyService, ToastyConfig} from './shared/components';
 @Component({
   moduleId: module.id,
   selector: 'app-savannah-academia-angular-app',
@@ -27,7 +28,8 @@ import './rxjs-operators';
         }), http);
       },
       deps: [Http]
-    })
+    }),
+    ToastyService, ToastyConfig
   ]
 })
 export class SavannahAcademiaAngularAppComponent {

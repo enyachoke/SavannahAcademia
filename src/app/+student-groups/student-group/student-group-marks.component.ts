@@ -6,13 +6,13 @@ import { RouteParams, Router } from '@ngrx/router';
 import {URLSearchParams} from '@angular/http';
 import { REACTIVE_FORM_DIRECTIVES, FormGroup, FormArray, FormBuilder, Validators} from '@angular/forms';
 import {Observable} from 'rxjs/Rx';
-
+import {ToastyService, Toasty} from '../../shared/components';
 @Component({
   moduleId: module.id,
   selector: 'app-student-group',
   templateUrl: 'student-group-marks.component.html',
   styleUrls: ['student-group.component.css'],
-  directives: [REACTIVE_FORM_DIRECTIVES],
+  directives: [REACTIVE_FORM_DIRECTIVES, Toasty],
   providers: [ExamPeriodService, StudentGroupMarkService]
 })
 export class StudentGroupMarksComponent implements OnInit {
@@ -29,8 +29,9 @@ export class StudentGroupMarksComponent implements OnInit {
   resultArray = new FormArray([]);
   constructor(private studentGroupService: StudentGroupService, params$: RouteParams,
     router: Router, private fb: FormBuilder,
-    private examPeriodService: ExamPeriodService, private studentGroupMarkService: StudentGroupMarkService
-    ) {
+    private examPeriodService: ExamPeriodService,
+    private studentGroupMarkService: StudentGroupMarkService,
+    private toastyService: ToastyService) {
     params$.pluck<number>('id').subscribe(id => this.id = id);
     this.resultForm = fb.group({
       results: this.resultArray
@@ -127,8 +128,11 @@ export class StudentGroupMarksComponent implements OnInit {
         this.resultArray = new FormArray([]);
         this.existingMarks = data;
         this.generateResultSet();
+        this.showToast('success', 'Student Marks', 'Saved succesfully');
       },
-      err => console.error(err)
+      err => {
+        this.showToast('error', 'Student Marks', 'Save Failed');
+      }
       );
   }
   onChange() {
@@ -149,5 +153,22 @@ export class StudentGroupMarksComponent implements OnInit {
   removeAll() {
     this.resultForm.controls['results']['controls'] = [];
     (<FormGroup>this.resultForm.controls['results']).updateValueAndValidity();
+  }
+  showToast(type: string, title: string, content: string) {
+    let options = {
+      title: title,
+      msg: content,
+      showClose: true,
+      timeout: 5000,
+      theme: 'bootstrap'
+    };
+    switch (type) {
+      case 'default': this.toastyService.default(options); break;
+      case 'info': this.toastyService.info(options); break;
+      case 'success': this.toastyService.success(options); break;
+      case 'wait': this.toastyService.wait(options); break;
+      case 'error': this.toastyService.error(options); break;
+      case 'warning': this.toastyService.warning(options); break;
+    }
   }
 }
