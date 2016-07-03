@@ -16,4 +16,5 @@ import 'jquery';
 import 'bootstrap-loader';
 import './style/app-seagreen.css';
 import 'font-awesome/css/font-awesome.css';
+import 'fuel-ui/bundles/fuel-ui.min.css';
 import 'ng2-toasty/ng2-toasty.css';

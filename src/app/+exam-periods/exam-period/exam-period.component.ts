@@ -3,16 +3,18 @@ import { ExamPeriod, ExamPeriodService } from '../shared/index';
 import { Term, TermService } from '../../+terms/shared/index';
 import { RouteParams, Router } from '@ngrx/router';
 import {ToastyService, Toasty} from '../../shared/components';
+import {DateRange, DATE_PICKER_PROVIDERS} from '../../shared/fuel-ui';
+import * as moment from 'moment';
 @Component({
   moduleId: module.id,
   selector: 'app-exam-period',
   templateUrl: 'exam-period.component.html',
   styleUrls: ['exam-period.component.css'],
   providers: [TermService],
-  directives: [Toasty],
+  directives: [Toasty, DATE_PICKER_PROVIDERS],
 })
 export class ExamPeriodComponent implements OnInit {
-
+  dateRangePickerValue: DateRange;
   examPeriod: ExamPeriod;
   id: any;
   isNew: Boolean;
@@ -33,9 +35,13 @@ export class ExamPeriodComponent implements OnInit {
     } else {
       this.isNew = true;
       this.examPeriod = new ExamPeriod();
+      this.examPeriod.start_date = moment().toString();
+      this.examPeriod.end_date = moment().toString();
     }
   }
   save() {
+    this.examPeriod.start_date = this.dateRangePickerValue.start.toString();
+    this.examPeriod.end_date = this.dateRangePickerValue.end.toString();
     this.examPeriodService
       .save(this.examPeriod)
       .subscribe(examPeriod => {
@@ -47,7 +53,9 @@ export class ExamPeriodComponent implements OnInit {
         this.showToast('error', 'Exam Period', 'Save Failed');
       });
   }
-
+  datePickerValueChange(eventValue: any) {
+    this.dateRangePickerValue = eventValue;
+  }
   showToast(type: string, title: string, content: string) {
     let options = {
       title: title,

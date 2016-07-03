@@ -2,14 +2,17 @@ import { Component, OnInit} from '@angular/core';
 import { Year, YearService } from '../shared/index';
 import { RouteParams, Router } from '@ngrx/router';
 import {ToastyService, Toasty} from '../../shared/components';
+import {DateRange, DATE_PICKER_PROVIDERS} from '../../shared/fuel-ui';
+import * as moment from 'moment';
 @Component({
   moduleId: module.id,
   selector: 'app-year',
   templateUrl: 'year.component.html',
   styleUrls: ['year.component.css'],
-  directives: [Toasty],
+  directives: [Toasty, DATE_PICKER_PROVIDERS],
 })
 export class YearComponent implements OnInit {
+  dateRangePickerValue: DateRange;
   year: Year;
   id: any;
   isNew: Boolean;
@@ -25,9 +28,13 @@ export class YearComponent implements OnInit {
     } else {
       this.isNew = true;
       this.year = new Year();
+      this.year.start_date = moment().toString();
+      this.year.end_date = moment().toString();
     }
   }
   save() {
+    this.year.start_date = this.dateRangePickerValue.start.toString();
+    this.year.end_date = this.dateRangePickerValue.end.toString();
     this.yearService
       .save(this.year)
       .subscribe(year => {
@@ -55,5 +62,8 @@ export class YearComponent implements OnInit {
       case 'error': this.toastyService.error(options); break;
       case 'warning': this.toastyService.warning(options); break;
     }
+  }
+  datePickerValueChange(eventValue: any) {
+    this.dateRangePickerValue = eventValue;
   }
 }

@@ -3,15 +3,18 @@ import { Term, TermService } from '../shared/index';
 import { Year, YearService } from '../../+years/shared/index';
 import { RouteParams, Router } from '@ngrx/router';
 import {ToastyService, Toasty} from '../../shared/components';
+import {DateRange, DATE_PICKER_PROVIDERS} from '../../shared/fuel-ui';
+import * as moment from 'moment';
 @Component({
   moduleId: module.id,
   selector: 'app-term',
   templateUrl: 'term.component.html',
   styleUrls: ['term.component.css'],
-  directives: [Toasty],
+  directives: [Toasty, DATE_PICKER_PROVIDERS],
   providers: [YearService]
 })
 export class TermComponent implements OnInit {
+  dateRangePickerValue: DateRange;
   years: Year[];
   term: Term;
   id: any;
@@ -33,9 +36,13 @@ export class TermComponent implements OnInit {
     } else {
       this.isNew = true;
       this.term = new Term();
+      this.term.start_date = moment().toString();
+      this.term.end_date = moment().toString();
     }
   }
   save() {
+    this.term.start_date = this.dateRangePickerValue.start.toString();
+    this.term.end_date = this.dateRangePickerValue.end.toString();
     this.termService
       .save(this.term)
       .subscribe(term => {
@@ -63,5 +70,18 @@ export class TermComponent implements OnInit {
       case 'error': this.toastyService.error(options); break;
       case 'warning': this.toastyService.warning(options); break;
     }
+  }
+
+  datePickerValueChange(eventValue: any) {
+    this.dateRangePickerValue = eventValue;
+  }
+
+  dateFilter(d: Date): boolean {
+
+    //every Tuesday
+    if ([2].indexOf(d.getDay()) > -1)
+      return false;
+
+    return true;
   }
 }
