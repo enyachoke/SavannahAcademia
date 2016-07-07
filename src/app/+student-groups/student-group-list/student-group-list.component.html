@@ -1,6 +1,6 @@
 <rd-widget>
 <div class='row'>
-  <a linkTo="/dashboard/student-groups/new" class="btn  btn-primary pull-right"><i class="fa fa-plus fa-1x" aria-hidden="true"></i></a>
+  <a linkTo="/dashboard/student-management/student-groups/new" class="btn  btn-primary pull-right"><i class="fa fa-plus fa-1x" aria-hidden="true"></i></a>
 <table class="table">
   <thead>
     <th>Name</th>
@@ -12,10 +12,10 @@
       <td>{{studentGroup.name}}</td>
       <td>{{studentGroup.year.name}}</td>
       <td>
-        <a linkTo="/dashboard/student-groups/{{studentGroup.id}}" class="btn btn-xs btn-primary"><i class="fa fa-pencil fa-1x" aria-hidden="true"></i></a>
+        <a linkTo="/dashboard/student-management/student-groups/{{studentGroup.id}}" class="btn btn-xs btn-primary"><i class="fa fa-pencil fa-1x" aria-hidden="true"></i></a>
       </td>
       <td>
-        <a linkTo="/dashboard/student-groups/{{studentGroup.id}}/marks" class="btn btn-xs btn-primary">Marks</a>
+        <a linkTo="/dashboard/student-management/student-groups/{{studentGroup.id}}/marks" class="btn btn-xs btn-primary">Marks</a>
       </td>
       <td>
         <button (click)="delete(studentGroup, $event)" class="btn btn-xs btn-danger"><i class='fa fa-trash'></i></button>

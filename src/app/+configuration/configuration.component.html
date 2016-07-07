@@ -1,0 +1,26 @@
+<div class="card" data-exclude="xs">
+  <div class="card-header card-header bordered">
+    <div class="header-block">
+      <h3 class="title">Configuration</h3> </div>
+    <ul class="nav nav-tabs pull-right">
+      <li class="nav-item">
+        <a linkActive="active" class="nav-link" linkTo="{{base}}"><span class="menu-icon fa fa-tachometer"> Dashboard</span></a>
+      </li>
+      <li class="nav-item">
+        <a linkActive="active" [activeOptions]="{ exact: false }" class="nav-link" linkTo="{{base}}/years"><span class="menu-icon fa fa-calendar"> Academic Years</span></a>
+      </li>
+      <li class="nav-item">
+        <a linkActive="active" [activeOptions]="{ exact: false }" class="nav-link" linkTo="{{base}}/terms"><span class="fa fa-calendar-o"> Terms</span></a>
+      </li>
+      <li class="nav-item">
+        <a linkActive="active" [activeOptions]="{ exact: false }" class="nav-link" linkTo="{{base}}/class-rooms"><span class="fa fa-building-o"> Class Rooms</span></a>
+      </li>
+      <li class="nav-item">
+        <a linkActive="active" [activeOptions]="{ exact: false }" class="nav-link" linkTo="{{base}}/subjects"><span class="fa fa-newspaper-o"> Subjects</span></a>
+      </li>
+    </ul>
+  </div>
+  <div class="card-block">
+    <route-view></route-view>
+  </div>
+</div>

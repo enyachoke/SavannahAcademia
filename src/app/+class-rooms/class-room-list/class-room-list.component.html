@@ -1,4 +1,4 @@
-<a linkTo="/dashboard/class-rooms/new" class="btn  btn-primary pull-right"><i class="fa fa-plus fa-1x" aria-hidden="true"></i></a>
+<a linkTo="/dashboard/configuration/class-rooms/new" class="btn  btn-primary pull-right"><i class="fa fa-plus fa-1x" aria-hidden="true"></i></a>
 <table class="table">
   <thead>
     <th>Name</th>
@@ -10,7 +10,7 @@
       <td>{{classRoom.name}}</td>
       <td>{{classRoom.number}}</td>
       <td>
-        <a linkTo="/dashboard/class-rooms/{{classRoom.id}}" class="btn btn-xs btn-primary"><i class="fa fa-pencil fa-1x" aria-hidden="true"></i></a>
+        <a linkTo="/dashboard/configuration/class-rooms/{{classRoom.id}}" class="btn btn-xs btn-primary"><i class="fa fa-pencil fa-1x" aria-hidden="true"></i></a>
       </td>
       <td>
         <button (click)="delete(classRoom, $event)" class="btn btn-xs btn-danger"><i class='fa fa-trash'></i></button>

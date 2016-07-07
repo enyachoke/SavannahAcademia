@@ -1,5 +1,5 @@
 <div class='row'>
-  <a linkTo="/dashboard/exam-periods/new" class="btn  btn-primary pull-right"><i class="fa fa-plus fa-1x" aria-hidden="true"></i></a>
+  <a linkTo="/dashboard/exam-management/exam-periods/new" class="btn  btn-primary pull-right"><i class="fa fa-plus fa-1x" aria-hidden="true"></i></a>
 <table class="table">
   <thead>
     <th>Label</th>
@@ -13,7 +13,7 @@
       <td>{{examPeriod.start_date}}</td>
       <td>{{examPeriod.end_date }}</td>
       <td>
-        <a linkTo="/dashboard/exam-periods/{{examPeriod.id}}" class="btn btn-xs btn-primary"><i class="fa fa-pencil fa-1x" aria-hidden="true"></i></a>
+        <a linkTo="/dashboard/exam-management/exam-periods/{{examPeriod.id}}" class="btn btn-xs btn-primary"><i class="fa fa-pencil fa-1x" aria-hidden="true"></i></a>
       </td>
       <td>
         <button (click)="delete(examPeriod, $event)" class="btn btn-xs btn-danger"><i class='fa fa-trash'></i></button>
