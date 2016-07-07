@@ -9,25 +9,25 @@ import {
 import { ComponentFixture, TestComponentBuilder } from '@angular/compiler/testing';
 import { Component } from '@angular/core';
 import { By } from '@angular/platform-browser';
-import { DashboardComponent } from './staff-management.component';
+import { StaffManagementComponent } from './staff-management.component';
 
 describe('Component: StaffManagement', () => {
   let builder: TestComponentBuilder;
 
-  beforeEachProviders(() => [DashboardComponent]);
+  beforeEachProviders(() => [StaffManagementComponent]);
   beforeEach(inject([TestComponentBuilder], function (tcb: TestComponentBuilder) {
     builder = tcb;
   }));
 
-  it('should inject the component', inject([DashboardComponent],
-      (component: DashboardComponent) => {
+  it('should inject the component', inject([StaffManagementComponent],
+      (component: StaffManagementComponent) => {
     expect(component).toBeTruthy();
   }));
 
   it('should create the component', inject([], () => {
-    return builder.createAsync(DashboardComponentTestController)
+    return builder.createAsync(StaffManagementComponentTestController)
       .then((fixture: ComponentFixture<any>) => {
-        let query = fixture.debugElement.query(By.directive(DashboardComponent));
+        let query = fixture.debugElement.query(By.directive(StaffManagementComponent));
         expect(query).toBeTruthy();
         expect(query.componentInstance).toBeTruthy();
       });
@@ -39,7 +39,7 @@ describe('Component: StaffManagement', () => {
   template: `
     <app-staff-management></app-staff-management>
   `,
-  directives: [DashboardComponent]
+  directives: [StaffManagementComponent]
 })
-class DashboardComponentTestController {
+class StaffManagementComponentTestController {
 }

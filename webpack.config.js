@@ -186,7 +186,8 @@ module.exports = function makeWebpackConfig() {
     new webpack.DefinePlugin({
       // Environment helpers
       'process.env': {
-        ENV: JSON.stringify(ENV)
+        ENV: JSON.stringify(ENV),
+        isPROD: isProd
       }
     })
   ];

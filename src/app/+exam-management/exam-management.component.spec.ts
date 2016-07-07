@@ -9,25 +9,25 @@ import {
 import { ComponentFixture, TestComponentBuilder } from '@angular/compiler/testing';
 import { Component } from '@angular/core';
 import { By } from '@angular/platform-browser';
-import { DashboardComponent } from './exam-management.component';
+import { ExamManagementComponent } from './exam-management.component';
 
 describe('Component: ExamManagement', () => {
   let builder: TestComponentBuilder;
 
-  beforeEachProviders(() => [DashboardComponent]);
+  beforeEachProviders(() => [ExamManagementComponent]);
   beforeEach(inject([TestComponentBuilder], function (tcb: TestComponentBuilder) {
     builder = tcb;
   }));
 
-  it('should inject the component', inject([DashboardComponent],
-      (component: DashboardComponent) => {
+  it('should inject the component', inject([ExamManagementComponent],
+      (component: ExamManagementComponent) => {
     expect(component).toBeTruthy();
   }));
 
   it('should create the component', inject([], () => {
-    return builder.createAsync(DashboardComponentTestController)
+    return builder.createAsync(ExamManagementComponentTestController)
       .then((fixture: ComponentFixture<any>) => {
-        let query = fixture.debugElement.query(By.directive(DashboardComponent));
+        let query = fixture.debugElement.query(By.directive(ExamManagementComponent));
         expect(query).toBeTruthy();
         expect(query.componentInstance).toBeTruthy();
       });
@@ -39,7 +39,7 @@ describe('Component: ExamManagement', () => {
   template: `
     <app-exam-management></app-exam-management>
   `,
-  directives: [DashboardComponent]
+  directives: [ExamManagementComponent]
 })
-class DashboardComponentTestController {
+class ExamManagementComponentTestController {
 }
