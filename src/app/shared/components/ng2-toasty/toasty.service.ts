@@ -18,7 +18,7 @@ export interface ToastOptions {
   msg?: string;
   showClose?: boolean;
   theme?: string;
-  timeout?: number;
+  timeout?: any;
   onAdd?: Function;
   onRemove?: Function;
 }
@@ -33,7 +33,7 @@ export interface ToastData {
   showClose: boolean;
   type: string;
   theme: string;
-  timeout: number;
+  timeout: any;
   onAdd: Function;
   onRemove: Function;
   onClick: Function;

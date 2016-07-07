@@ -40,6 +40,7 @@ export class HttpInterceptor extends Http {
   }
 
   intercept(observable: Observable<Response>): Observable<Response> {
+    console.log('Intercept1=====');
     return observable.catch((err, source) => {
       if (err.status === 401 && !_.endsWith(err.url, 'authenticate')) {
         this._router.go('/login');
