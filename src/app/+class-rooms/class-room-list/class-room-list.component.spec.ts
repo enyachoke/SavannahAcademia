@@ -10,11 +10,12 @@ import { ComponentFixture, TestComponentBuilder } from '@angular/compiler/testin
 import { Component } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { ClassRoomListComponent } from './class-room-list.component';
-
+import { ClassRoom, ClassRoomService } from '../shared/index';
+import {COMMON_PROVIDERS} from '../../shared/common-providers';
 describe('Component: ClassRoomList', () => {
   let builder: TestComponentBuilder;
 
-  beforeEachProviders(() => [ClassRoomListComponent]);
+  beforeEachProviders(() => [COMMON_PROVIDERS,ClassRoomListComponent,ClassRoomService]);
   beforeEach(inject([TestComponentBuilder], function (tcb: TestComponentBuilder) {
     builder = tcb;
   }));
@@ -43,4 +44,3 @@ describe('Component: ClassRoomList', () => {
 })
 class ClassRoomListComponentTestController {
 }
-

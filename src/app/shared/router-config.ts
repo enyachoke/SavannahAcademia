@@ -219,6 +219,14 @@ export const routes: Routes = [
             ]
           },
           {
+            path: '/reports',
+            loadComponent: () => new Promise(resolve => {
+              require.ensure([], rq => {
+                resolve(require('../+student-management/reports/').ReportCardsComponent);
+              });
+            }),
+          },
+          {
             path: '/student-groups',
             loadComponent: () => new Promise(resolve => {
               require.ensure([], rq => {

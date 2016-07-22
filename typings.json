@@ -4,6 +4,7 @@
     "core-js": "registry:dt/core-js#0.0.0+20160602141332",
     "hammerjs": "registry:dt/hammerjs#2.0.4+20160417130828",
     "jasmine": "registry:dt/jasmine#2.2.0+20160621224255",
+    "lodash": "registry:dt/lodash#3.10.0+20160619033623",
     "moment-node": "github:DefinitelyTyped/DefinitelyTyped/moment/moment-node.d.ts#56295f5058cac7ae458540423c50ac2dcf9fc711",
     "node": "registry:dt/node#6.0.0+20160621231320",
     "selenium-webdriver": "registry:dt/selenium-webdriver#2.44.0+20160317120654",

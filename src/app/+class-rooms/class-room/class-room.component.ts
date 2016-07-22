@@ -67,7 +67,7 @@ export class ClassRoomComponent implements OnInit {
       .subscribe(classRoom => {
       this.classRoom = classRoom;
       this.isNew = false;
-      this.router.go(`/dashboard/class-rooms/${classRoom.id}`);
+      //this.router.go(`/dashboard/class-rooms/${classRoom.id}`);
       this.showToast('success', 'Save Class Room', 'Saved successfully');
     }, error => {
         this.showToast('error', 'Save Class Room', 'Failed');

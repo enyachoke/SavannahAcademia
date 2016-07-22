@@ -15,6 +15,11 @@ export class StudentGroupMarkService {
       .map(this.extractData)
       .catch(this.handleError);
   }
+  getReportCards(): Observable<any[]> {
+    return this.http.get(`${this.studentGroupMarksUrl}/student_marks`)
+      .map(res => res.json())
+      .catch(this.handleError);
+  }
   getOne(id: number) {
     return this.http.get(`${this.studentGroupMarksUrl}/${id}`)
       .map(this.extractData)

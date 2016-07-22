@@ -4,3 +4,31 @@ a.nav-link {
 a.nav-link:hover {
   text-decoration: none;
 }
+.app .content {
+  padding: 90px 10px;
+  min-height: 100vh;
+}
+@media (min-width: 1200px) {
+  .app .content {
+    padding: 100px 10px;
+  }
+}
+@media (min-width: 992px) and (max-width: 1199px) {
+  .app .content {
+    padding: 90px 10px;
+  }
+}
+@media (min-width: 768px) and (max-width: 991px) {
+  .app .content {
+    padding: 85px 10px 75px;
+  }
+}
+@media (max-width: 767px) {
+  .app .content {
+    padding: 65px 10px;
+  }
+}
+* {
+  border-radius: 0 !important;
+  -moz-border-radius: 0 !important;
+}

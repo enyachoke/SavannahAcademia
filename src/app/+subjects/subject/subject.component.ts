@@ -35,7 +35,6 @@ export class SubjectComponent implements OnInit {
       this.subject = subject;
       this.isNew = false;
       this.showToast('success', 'Subject', 'Saved succesfully');
-      this.router.go(`/dashboard/subjects/${subject.id}`);
     }, error => {
         this.showToast('error', 'Subject', 'Save Failed');
         this.error = JSON.parse(error._body);

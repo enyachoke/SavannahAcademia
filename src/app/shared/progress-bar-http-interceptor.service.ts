@@ -2,7 +2,7 @@ import { Observable } from 'rxjs';
 import { EventEmitter, Injectable } from '@angular/core';
 import {Router} from '@ngrx/router';
 import { ConnectionBackend, Headers, Http, Request, RequestOptions, RequestOptionsArgs, Response } from '@angular/http';
-declare var _: any;
+import * as _ from 'lodash';
 // Intercept all Http methods to provide hooks for starting and ending progress bars, using an event emitter to update them
 export class ProgressBarHttpInterceptorService extends Http {
   private static START_DELAY_MS: number = 100;
