@@ -32,7 +32,9 @@ export const routes: Routes = [
         guards: [AuthGuard],
         index: {
           loadComponent: () => new Promise(resolve => {
+            console.log("starting");
             require.ensure([], rq => {
+              console.log('Loaded');
               resolve(require('../+configuration/configuration-index.component').ConfigurationIndexComponent);
             });
           })
